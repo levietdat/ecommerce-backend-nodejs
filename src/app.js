@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
@@ -9,7 +10,9 @@ app.use(morgan("combined"));
 app.use(helmet());
 app.use(compression());
 // init db
-
+require("./dbs/init.mongodb");
+const { checkOverloaded } = require("./helpers/check.connect");
+checkOverloaded();
 // init routers
 app.get("/", (req, res) => {
   const strCompress = "Hello Nodejs";
@@ -19,5 +22,4 @@ app.get("/", (req, res) => {
   });
 });
 // handling errors
-
 module.exports = app;

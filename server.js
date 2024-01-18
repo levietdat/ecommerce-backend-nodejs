@@ -1,8 +1,7 @@
 const app = require("./src/app");
 
-const PORT = 3001;
-const server = app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+const server = app.listen(process.env.DEV_APP_PORT, () => {
+  console.log(`Server listening on port ${process.env.DEV_APP_PORT}`);
 });
 
 // process.on("SIGINT", () => {
